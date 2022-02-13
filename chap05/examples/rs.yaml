@@ -2,12 +2,17 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: nginx
+  labels:
+    key: rs_sample
 spec:
   replicas: 2  ## レプリカ数
+  selector:
+    matchLabels:
+      key: rs_sample
   template:    ## PodTemplateのフィールド
     metadata:
       labels:
-        app: nginx   ## ReplicaSetのmetadataと同じラベル
+        key: rs_sample 
     spec:
       containers:
         - name: nginx-container
