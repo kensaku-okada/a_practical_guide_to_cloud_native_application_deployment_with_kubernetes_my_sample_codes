@@ -1,13 +1,16 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
+  labels:
+    app: nginx
 spec:
-  replicas: 2          ## レプリカ数の指定
+  replicas: 3          ## レプリカ数の指定
   selector:
     matchLabels:
       app: nginx
+  strategy:
+    type: RollingUpdate ## デフォルトがこれなので本当はいらない
   template:            ## PodTemplateのフィールド
     metadata:
       labels:
